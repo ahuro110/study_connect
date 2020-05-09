@@ -1,0 +1,61 @@
+<h1>登録詳細</h1>
+
+<div class="post-content">
+  <ul class="meta-info-cells v4 float-wrapper">
+    <li>
+      <%= @post_study.date.strftime('%Y/%m/%d') %></a>
+    </li>
+    <% if @post_study.favorited_by?(current_user) %>
+      <li>
+        <%= link_to post_study_favorites_path(@post_study) ,method: :delete do %>
+          <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+          <%= @post_study.favorites.count %>いいね
+        <% end %>
+      </li>
+    <% else %>
+      <li>
+      <%= link_to post_study_favorites_path(@post_study), method: :post do %>
+        <i class="fa fa-heart-o" aria-hidden="true"></i>
+        <%= @post_study.favorites.count %>いいね
+      <% end %>
+      </li>
+    <% end %>
+    <li>
+      <%= @post_study.content %>
+    </li>
+  </ul>
+</div>
+<div class="comment-list bt style-2" id="comments">
+  <div class="float-wrapper">
+    <h2 class="comment-count"><%= @post_study.post_comments.count %>件コメント</h2>
+  </div>
+</div>
+<ol>
+    <% @post_study.post_comments.each do |post_comment| %>
+        <li class="comment">
+            <div class="comment-body bb">
+                <div class="comment-text">
+                    <div class="comment-author clearfix">
+                        <a href="#" class="link-author"><%= post_comment.user.name %></a>
+                        <span class="comment-meta">
+                        <span class="comment-date"><%= post_comment.created_at.strftime('%Y/%m/%d') %></span>
+                        </span>
+                    </div>
+                    <div class="comment-entry"><%= post_comment.comment %></div>
+                </div>
+            </div>
+        </li>
+    <% end %>
+</ol>
+
+<%= form_for [@post_study, @post_comment] do |f| %>
+    <div class="row">
+        <div class="col-sm-12">
+            <%= f.text_area :comment, rows:'3', class: "form-control",placeholder: "コメントを入力" %>
+        </div>
+    </div>
+    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+<% end %>
+
+<%= link_to "編集", edit_post_study_path(@post_study) %>
+<%= link_to "削除", post_study_path(@post_study) , method: :delete, data:{confirm: "削除しますか?"}%>

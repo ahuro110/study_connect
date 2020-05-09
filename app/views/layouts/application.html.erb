@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>StudyConnect</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <header>
+  <% if user_signed_in? %>
+    <%= render "layouts/login_header" %>
+  <%else %>
+    <%= render "layouts/before_login_header" %>
+  <% end %>
+  </header>
+    <div class="mt-3">
+      <%= yield %>
+    </div>
+  <%= render "layouts/footer" %>
+  </body>
+</html>

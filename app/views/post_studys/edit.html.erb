@@ -1,0 +1,31 @@
+<h1>編集</h1>
+
+<%= form_for(@post_study, url:post_study_path) do |f| %>
+  <% if @post_study.errors.any? %>
+    <div id ="error_explanation">
+      <h2><%= @post_study.errors.count %>件のエラーが発生しました。</h2>
+      <ul>
+        <% @post_study.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group has-icon">
+        <%= f.label :date ,"学習日"%>
+        <%= f.date_field :date,  class:"form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group has-icon">
+        <%= f.label :content, "学習内容" %>
+        <%= f.text_area :content, class:"form-control" ,rows:"3" %>
+      </div>
+    </div>
+  </div>
+  <%= f.submit "送信", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
+<% end %>
