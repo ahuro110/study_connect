@@ -2,4 +2,8 @@
 <% @post_studies.each do |post_study| %>
   <%= post_study.date.strftime("%Y%m%d") %>
   <%= post_study.content %>
+  <%= link_to post_study_path(post_study.id) do %>
+    <%= post_study.user.name %>
+  <% end %>
 <% end %>
+<%= paginate @post_studies, class: "paginate" %>

@@ -5,6 +5,9 @@
     <li>
       <%= @post_study.date.strftime('%Y/%m/%d') %></a>
     </li>
+    <li>
+      <%= @post_study.content %>
+    </li>
     <% if @post_study.favorited_by?(current_user) %>
       <li>
         <%= link_to post_study_favorites_path(@post_study) ,method: :delete do %>
@@ -20,9 +23,6 @@
       <% end %>
       </li>
     <% end %>
-    <li>
-      <%= @post_study.content %>
-    </li>
   </ul>
 </div>
 <div class="comment-list bt style-2" id="comments">
@@ -36,12 +36,19 @@
             <div class="comment-body bb">
                 <div class="comment-text">
                     <div class="comment-author clearfix">
-                        <a href="#" class="link-author"><%= post_comment.user.name %></a>
+                        <%= link_to user_path(post_comment.user_id) do %>
+                          <%= post_comment.user.name %>
+                        <% end %>
                         <span class="comment-meta">
                         <span class="comment-date"><%= post_comment.created_at.strftime('%Y/%m/%d') %></span>
                         </span>
                     </div>
                     <div class="comment-entry"><%= post_comment.comment %></div>
+                    <div class="comment-edit">
+                      <% if current_user.id == post_comment.user_id %>
+                        <%= link_to "削除" , post_study_post_comments_path(post_comment.user_id) , method: :delete %>
+                      <% end %>
+                    </div>
                 </div>
             </div>
         </li>

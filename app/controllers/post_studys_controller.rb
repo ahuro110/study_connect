@@ -16,7 +16,7 @@ class PostStudysController < ApplicationController
     @post_comment = PostComment.new
   end
   def index
-    @post_studies = PostStudy.where(user_id: current_user.id)
+    @post_studies = PostStudy.page(params[:id]).reverse_order
   end
   def edit
     @post_study = PostStudy.find(params[:id])

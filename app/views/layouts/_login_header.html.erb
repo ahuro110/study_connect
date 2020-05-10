@@ -7,15 +7,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Study Connect</a>
+      <%= link_to post_studys_path , class:"navbar-brand" do%>
+        Study Connect
+      <% end %>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><%= link_to "Home", root_path , class:"active" %></li>
-        <li><%= link_to "about", home_about_path %></li>
-        <li><%= link_to "Contact", home_contact_path%></li>
+        <li><%= link_to "タイムライン", post_studys_path %></li>
+        <li><%= link_to "新規投稿", new_post_study_path %></li>
+        <li><%= link_to "マイページ", user_path(current_user.id) %></li>
         <li><%= link_to "ログアウト", destroy_user_session_path , method: :delete %></li>
-        <li><a href="#contact">Contact</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

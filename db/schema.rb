@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_09_124218) do
+ActiveRecord::Schema.define(version: 2020_05_10_025417) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_05_09_124218) do
     t.integer "goal_minute", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profile_image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
