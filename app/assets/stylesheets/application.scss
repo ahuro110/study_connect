@@ -17,7 +17,9 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
-
+ li{
+   list-style: none;
+ }
 /* ヘッダー */
 .header{
   position:absolute;
@@ -56,4 +58,9 @@ body{
   .footer > .container {
   padding-right: 15px;
   padding-left: 15px;
+  }
+
+  .btn{
+    width:10px;
+    height:10px;
   }
